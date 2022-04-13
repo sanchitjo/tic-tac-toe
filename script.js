@@ -20,22 +20,32 @@ function resetHandler() {
     location.reload()
 }
 
-
 function checkForWinner() {
     winningCombination.forEach(function (combination) {
         let check = combination.every(index => cells[index].innerText == currentPlayer)
         if (check) {
-           document.getElementById("container").innerHTML = currentPlayer + ' has won!'
+            document.getElementsByClassName('winner-message')[0].innerText = currentPlayer + ' has won!'
+            gameActive = false
         }
-
+        matchDraw()
+        
     })
+}
+
+let count = 0;
+function matchDraw() {
+        if (count === 9 ) {
+            document.getElementsByClassName('winner-message')[0].innerText = "It's a tie!"
+        }
 }
 
 cells.forEach(function (cell) {
     cell.addEventListener('click', function () {
-        if (cell.innerText != '') return
+        if (cell.innerText != '' || !gameActive) return
         cell.innerText = currentPlayer
         checkForWinner()
         currentPlayer = currentPlayer === 'X' ? 'O' : 'X'
+        count++
+        matchDraw()
     })
 })
