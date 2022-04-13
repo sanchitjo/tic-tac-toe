@@ -27,16 +27,14 @@ function checkForWinner() {
             document.getElementsByClassName('winner-message')[0].innerText = currentPlayer + ' has won!'
             gameActive = false
         }
-        matchDraw()
-        
     })
 }
 
 let count = 0;
 function matchDraw() {
-        if (count === 9 ) {
-            document.getElementsByClassName('winner-message')[0].innerText = "It's a tie!"
-        }
+    if (count === 9) {
+        document.getElementsByClassName('winner-message')[0].innerText = "It's a tie!"
+    }
 }
 
 cells.forEach(function (cell) {
@@ -47,5 +45,6 @@ cells.forEach(function (cell) {
         currentPlayer = currentPlayer === 'X' ? 'O' : 'X'
         count++
         matchDraw()
+
     })
 })
